@@ -1,0 +1,71 @@
+<div class="row">
+    @for(liver of livers; track liver.title) {
+    <div class="col-sm-6 col-lg-3">
+        <mat-card class="cardWithShadow liver overflow-hidden">
+            <a routerLink="/widgets/cards">
+                <img src="/assets/images/products/book3.jpg" alt="imgSrc" class="w-100" mat-card-image />
+            </a>
+            <mat-card-content class="p-b-24 p-t-12 position-relative">
+                <button mat-mini-fab color="primary" class="icon-30 cart-btn" matTooltip="Add to Cart">
+                    <i-tabler name="basket" class="icon-16"></i-tabler>
+                </button>
+                <mat-card-title class="mat-headline-2 f-s-16 m-b-4">{{
+                    liver.title
+                    }}</mat-card-title>
+
+                    <mat-card-title class="mat-headline-2 f-s-12 m-b-4">
+                        Other : {{ liver.author }}
+                        </mat-card-title>
+
+
+                        
+                <div class="d-flex align-items-center justify-content-between">
+                     
+                    <div class="d-flex align-items-center">
+                        <h6 class="mat-body-2 f-w-600">$199</h6>
+                        @if(liver.available_copies >0) {
+                            <span  class="f-s-16 m-l-4 m-3 justify-content-between text-success">available</span>
+
+                        }@else {
+                            <span class="f-s-16 m-l-4 justify-content-between text-danger">not available</span>
+                            
+                        }
+                    </div>
+                    
+                    @if(liver.available_copies >0) {
+                        <button (click)=" OpenDialog(liver)" mat-icon-button aria-label="Borrow this book" class="text-success" >
+                            <mat-icon>book</mat-icon>
+                        </button>
+                        
+                    }
+                    @else {
+                        <button mat-icon-button aria-label="Borrow this book" class="text-danger" >
+                            <mat-icon>book</mat-icon>
+                        </button>
+                    }
+
+                </div>
+
+
+
+
+
+                <div class="d-flex align-items-center justify-content-between">
+                     
+                    <div class="d-flex align-items-center">
+                        <!-- <h6 class="mat-body-2 f-w-600">$199</h6> -->
+                        
+                            <span class="f-s-16 m-l-4 mat-body-2 f-w-600 justify-content-between text-darck">{{liver.publication_year}}</span>
+ 
+                    </div>
+                    
+                  
+                </div>
+
+
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+    }
+</div>

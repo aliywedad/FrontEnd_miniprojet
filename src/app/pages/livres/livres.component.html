@@ -1,0 +1,90 @@
+
+
+
+
+
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+      <mat-card-title>Table</mat-card-title>
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-form-field appearance="outline" class="w-25 m-r-10" color="primary">
+            <input matInput placeholder="title " />
+          </mat-form-field>
+         
+             
+          </div>
+          <div class="col-lg-3">                  <button mat-menu-item  (click)="showAddLivreDialog()" >
+            <mat-icon>add</mat-icon>
+            <span>Add</span>
+          </button></div>
+
+    </div>
+      <div class="table-responsive">
+        <table class="table table-hover  ">
+          
+
+
+          <!-- Table Head -->
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+              <th scope="col">Genre</th>
+              <th scope="col">publication year</th>
+              <th scope="col">available copies</th>
+            
+              <th scope="col" class="text-center">Budget</th>
+            </tr>
+          </thead>
+
+  
+          <!-- Table Body -->
+          <tbody>
+            <tr *ngFor="let liver of livers; trackBy: trackByName" class="align-middle">
+              <!-- ID Column -->
+              <th scope="row" class=" text-darck text-center">{{ liver.id }}</th>
+              
+              <!-- Other Columns -->
+              
+              <td>{{ liver.title }}</td>
+              <td>{{ liver.author }}</td>
+              <td>{{ liver.genre }}</td>
+              <td>{{ liver.publication_year }}</td>
+              <td>{{ liver.available_copies }}</td>
+            
+  
+              <!-- Actions Column with Menu -->
+              <td class="text-center">
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Example icon-button with a menu"
+                  class="p-0 m-0"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>add</mat-icon>
+                    <span>Add</span>
+                  </button>
+                  <button mat-menu-item  >
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item  >
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

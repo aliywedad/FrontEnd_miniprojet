@@ -1,0 +1,60 @@
+
+
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+      <mat-card-title>Table</mat-card-title>
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-form-field appearance="outline" class="w-25 m-r-10" color="primary">
+            <input matInput placeholder="title " />
+          </mat-form-field>
+         
+             
+          </div>
+           
+
+    </div>
+      <div class="table-responsive">
+        <table class="table table-hover  ">
+          
+
+
+          <!-- Table Head -->
+          <thead>
+            <tr>
+ 
+              <th scope="col">#</th>
+              <th scope="col">book title</th>
+              <th scope="col">borrow date</th>
+              <th scope="col">return date</th>
+              <th scope="col">penalty</th>
+              <th scope="col">user name</th>
+            
+               
+          </thead>
+
+  
+          <!-- Table Body -->
+          <tbody>
+            <tr *ngFor="let borrow of borrows; trackBy: trackByName" class="align-middle">
+              <!-- ID Column -->
+              <th scope="row" class=" text-darck text-center">{{ borrow.id }}</th>
+              
+              <!-- Other Columns -->
+             
+              
+              <td>{{ borrow.book_title }}</td>
+              <td>{{ borrow.borrow_date }}</td>
+              <td>{{ borrow.return_date }}</td>
+              <td>{{ borrow.penalty }}</td>
+              <td>{{ borrow.username }}</td>
+            
+   
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

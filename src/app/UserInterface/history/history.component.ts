@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
  
 import { BorrowService } from 'src/app/services/borrow.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -22,6 +23,8 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
          MatTableModule,
          CommonModule,
          MatCardModule,
+         FormsModule, // Add FormsModule here
+
          MaterialModule,
          MatIconModule,
          MatMenuModule,
@@ -34,8 +37,9 @@ export class HistoryComponent implements OnInit{
   id:number=0
   constructor(private myService: BorrowService,private dialog: MatDialog,private sharedData: SharedDataService) {}
   borrows: any = [
-
   ];
+  filteredBorrows: any[] = [];  
+
   ngOnInit(): void {
     this.id=this.sharedData.getData('user').id
 
@@ -46,15 +50,32 @@ this.getLivreData()
     this.myService.gethistoryData(this.id).subscribe((data: any) => {
       console.log(data);
       this.borrows = data;  
+      this.filteredBorrows = data; // Initialize filteredBorrows
+
     });
     
   }
+  searchvalue:string ="";
+  onSearchChange(searchValue: string): void {
+    console.log('Search query:', searchValue, 'Type:', typeof searchValue);
+    if (searchValue=="") {
+      // Reset to original data when the search query is empty
+      this.filteredBorrows = [...this.borrows];
+      console.log('Filtered data 333:', this.filteredBorrows);
 
+    } else {
+      // Filter by book name
+      this.filteredBorrows = this.borrows.filter((borrow: any) =>
+        borrow.book.book_title.toLowerCase().includes(searchValue.toLowerCase())
+      );
+
+      console.log('Filtered data:', this.filteredBorrows);
+    }
+  }
   
 
 
-  // borrows = PRODUCT_DATA;
-  trackByName(index: number, user: any): string {
-    return user.name; // Use a unique identifier like `user.id` or `user.name`
+  trackByName(index: number, borrow: any): string {
+    return borrow.book.name; // Use a unique identifier like `borrow.id` if available
   }
 }

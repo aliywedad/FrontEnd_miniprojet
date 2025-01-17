@@ -7,8 +7,12 @@
         <div class="col-lg-6">
           <!-- input -->
           <mat-form-field appearance="outline" class="w-25 m-r-10" color="primary">
-            <input matInput placeholder="title " />
+            <input matInput placeholder="title " 
+            [(ngModel)]="searchvalue" name="searchvalue"
+              (input)="onSearchChange(searchvalue)"
+              />
           </mat-form-field>
+          
          
              
           </div>
@@ -37,7 +41,7 @@
   
           <!-- Table Body -->
           <tbody>
-            <tr *ngFor="let borrow of borrows; trackBy: trackByName" class="align-middle">
+            <tr *ngFor="let borrow of filteredBorrows; trackBy: trackByName" class="align-middle">
               <!-- ID Column -->
               <th scope="row" class=" text-darck text-center">{{ borrow.id }}</th>
               

@@ -22,8 +22,9 @@
                 <div class="d-flex align-items-center justify-content-between">
                      
                     <div class="d-flex align-items-center">
-                        <h6 class="mat-body-2 f-w-600">$199</h6>
+                        
                         @if(liver.available_copies >0) {
+                            <h6 class="mat-body-2 f-w-600">{{liver.available_copies}}</h6>
                             <span  class="f-s-16 m-l-4 m-3 justify-content-between text-success">available</span>
 
                         }@else {

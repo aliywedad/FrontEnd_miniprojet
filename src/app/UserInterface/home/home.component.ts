@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BorrowingBookComponent } from './components/borrowing-book/borrowing-book.component';
 import { UsersComponent } from 'src/app/pages/users/users.component';
 import { Router } from '@angular/router';
+import { DialogRef } from '@angular/cdk/dialog';
  
 
 
@@ -50,9 +51,19 @@ checkData(): void {
       
       }
       OpenDialog(book:any) {
-        this.dialog.open(BorrowingBookComponent, {
+         
+        const dialogRef = this.dialog.open(BorrowingBookComponent, {
           data: book,
         });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          // Handle dialog close result here
+            
+            this.getLivreData()
+            
+          
+        });
+
       }
       getLivreData(): void {
         this.myService.getLiverData().subscribe((data: any) => {

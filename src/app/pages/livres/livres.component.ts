@@ -59,9 +59,14 @@ showAddLivreDialog() {
   }
 
   deleteliver(id: number) {
-    // this.myService.deteleClient(id).subscribe(() => {
-    //   this.livers = this.livers.filter((user: any) => user.id !== id);
-    // });
+    this.myService.deleteLiver(id).subscribe(() => {
+      this.livers = this.livers.filter((user: any) => user.id !== id);
+    });
+  }
+  updatelivre(id: number) {
+    this.myService.updateLiver(id).subscribe(() => {
+      this.livers = this.livers.filter((user: any) => user.id !== id);
+    });
   }
 
 

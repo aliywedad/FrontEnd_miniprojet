@@ -47,6 +47,12 @@ export class AddLivreComponent {
   onSubmit() {
     this.service.addLiver(this.livre).subscribe(res => {
       console.log(res);
+      
+    });
+  }
+  ondelete(id: any) {
+    this.service.deleteLiver(id).subscribe(res => {
+      console.log(res);
     });
   }
 

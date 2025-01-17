@@ -6,7 +6,11 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class LiversService {
   httpClient=inject(HttpClient)
-
+  updateLiver(id: number) {
+    const LiverUrl = ApiMapService.Livers + '/'+id;
+    console.log("updateLiver",LiverUrl);
+    return this.httpClient.put<any>(LiverUrl, id);
+  }
   getLiverData(): Observable<any[]> {
     const LiverUrl = ApiMapService.Livers;
     console.log("getting the data from ",LiverUrl," .......");

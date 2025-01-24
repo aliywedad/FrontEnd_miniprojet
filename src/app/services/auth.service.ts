@@ -12,4 +12,16 @@ export class AuthService {
   const UserUrl = ApiMapService.auth;
   return this.httpClient.post<any>(UserUrl, client); // Return observable
 
-}}
+}
+
+register(client: any): Observable<any> {
+  console.log("register",client);
+  const UserUrl = ApiMapService.register;
+  return this.httpClient.post<any>(UserUrl, client); // Return observable   
+
+
+}
+
+
+
+}

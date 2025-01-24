@@ -10,6 +10,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UsersServicesComponent } from 'src/app/services/UsersServices';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Router } from '@angular/router';
+import { UsersComponent } from '../../users.component';
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-user',
   standalone: true,
@@ -28,7 +30,11 @@ import { Router } from '@angular/router';
   styleUrl: './add-user.component.scss'
 })
 export class AddUserComponent implements OnInit  {
-constructor(private service: UsersServicesComponent,private sharedData: SharedDataService,private router: Router) { }
+constructor(private service: UsersServicesComponent,
+  private sharedData: SharedDataService,private router: Router,
+  public dialogRef: MatDialogRef<UsersComponent>,
+
+) { }
  
  
 checkData(): void {
@@ -60,6 +66,7 @@ user: any = {
 onSubmit() {
   this.service.addUser(this.user).subscribe(res => {
     console.log(res);
+    this.onClose()
   });
 }
  
@@ -67,5 +74,9 @@ onSubmit() {
     console.log(this.user);
   }
 
-
+  onClose() {
+    this.dialogRef.close();
+    
+  
+  }
 }

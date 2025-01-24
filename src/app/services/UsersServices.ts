@@ -24,4 +24,11 @@ export class UsersServicesComponent {
     return this.httpClient.post<any>(UserUrl, client); // Return observable
   }
 
+
+  editUser(client: any): Observable<any> {
+    console.log("edit client",client);
+    const UserUrl = ApiMapService.Users+"-update";
+    return this.httpClient.post<any>(UserUrl, client); // Return observable
+  }
+
 }

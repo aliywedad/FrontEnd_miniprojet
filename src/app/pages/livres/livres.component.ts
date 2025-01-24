@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { LiversService } from 'src/app/services/liver.service';
 import { AddLivreComponent } from './components/add-livre/add-livre.component';
+import { EditLivreComponent } from './components/edit-livre/edit-livre.component';
  
 
 @Component({
@@ -53,6 +54,17 @@ showAddLivreDialog() {
     this.getLivreData();
     });
   }
+
+
+  showEditLivreDialog(livre: any) {
+    const dialogRef = this.dialog.open(EditLivreComponent,{data: livre});
+  
+    dialogRef.afterClosed().subscribe((result) => {
+    this.getLivreData();
+    });
+  }
+
+
   showEditUserDialog(user: any) {
     // const dialogRef = this.dialog.open(EditUserComponent,{data: user });
   
@@ -60,12 +72,12 @@ showAddLivreDialog() {
 
   deleteliver(id: number) {
     this.myService.deleteLiver(id).subscribe(() => {
-      this.livers = this.livers.filter((user: any) => user.id !== id);
+      this.getLivreData();
     });
   }
   updatelivre(id: number) {
     this.myService.updateLiver(id).subscribe(() => {
-      this.livers = this.livers.filter((user: any) => user.id !== id);
+      this.getLivreData();
     });
   }
 
@@ -75,3 +87,18 @@ showAddLivreDialog() {
     return user.name; // Use a unique identifier like `user.id` or `user.name`
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

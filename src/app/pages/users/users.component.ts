@@ -47,7 +47,10 @@ const PRODUCT_DATA: any = [
   styleUrl: './users.component.scss'
 })
 export class UsersComponent  implements OnInit{
-  constructor(private myService: UsersServicesComponent,private dialog: MatDialog,private router: Router,private sharedData : SharedDataService ) {}
+  constructor(private myService: UsersServicesComponent,
+    private dialog: MatDialog,
+    private router: Router,
+    private sharedData : SharedDataService ) {}
   checkData(): void {
     const user = this.sharedData.getData('admin');
     if (!user) {
@@ -63,7 +66,7 @@ export class UsersComponent  implements OnInit{
   users: any = [];
   ngOnInit(): void {
     this.getUserData();
-    this. checkData();
+    this.checkData();
    
   
   } 

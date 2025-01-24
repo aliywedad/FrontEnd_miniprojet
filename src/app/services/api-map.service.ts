@@ -10,6 +10,7 @@ export class ApiMapService {
   static borrow = `${ApiMapService.ip}borrow`;  
   static borrowing = `${ApiMapService.ip}borrowing-list`;  
   static auth = `${ApiMapService.ip}auth`;  
+  static register = `${ApiMapService.ip}register`;  
   static histroy = `${ApiMapService.ip}history`;  
   
   

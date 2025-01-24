@@ -6,10 +6,10 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class LiversService {
   httpClient=inject(HttpClient)
-  updateLiver(id: number) {
-    const LiverUrl = ApiMapService.Livers + '/'+id;
+  updateLiver(Liver: any): Observable<any> {
+    const LiverUrl = ApiMapService.Livers+"-edit/"+Liver.id;
     console.log("updateLiver",LiverUrl);
-    return this.httpClient.put<any>(LiverUrl, id);
+    return this.httpClient.put<any>(LiverUrl, Liver);
   }
   getLiverData(): Observable<any[]> {
     const LiverUrl = ApiMapService.Livers;
@@ -18,7 +18,7 @@ export class LiversService {
   }
   deleteLiver(id: number): Observable<any> {
     console.log("deleteing the id ..... ",id);
-    const LiverUrl = ApiMapService.Livers + '/'+id;
+    const LiverUrl = ApiMapService.Livers + '-delete/'+id;
     return this.httpClient.delete<any>(LiverUrl); // Return observable
   }
 

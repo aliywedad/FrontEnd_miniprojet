@@ -13,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { HeaderComponent } from './header/header.component';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
 const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
@@ -42,6 +43,9 @@ export class FullComponent implements OnInit {
 
   navItems = navItems;
 
+
+  
+
   @ViewChild('leftsidenav')
   public sidenav: MatSidenav | any;
 
@@ -56,7 +60,24 @@ export class FullComponent implements OnInit {
     return this.isMobileScreen;
   }
 
-  constructor(private breakpointObserver: BreakpointObserver, private navService: NavService) {
+  checkData(): void {
+    const user = this.sharedData.getData('admin');
+    if (!user) {
+      // If no user data is found, redirect to login or home
+      console.error('No user data found. Redirecting to login.');
+      this.router.navigate(['/']);
+    } else {
+      console.log('User data found:', user);
+    }
+  }
+  constructor(private breakpointObserver: BreakpointObserver, private navService: NavService
+    ,    private router: Router,
+    private sharedData : SharedDataService
+  ) {
+
+
+
+    
     
     this.htmlElement = document.querySelector('html')!;
     this.htmlElement.classList.add('light-theme');
@@ -71,7 +92,9 @@ export class FullComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.checkData();
+  }
 
   ngOnDestroy() {
     this.layoutChangesSubscription.unsubscribe();

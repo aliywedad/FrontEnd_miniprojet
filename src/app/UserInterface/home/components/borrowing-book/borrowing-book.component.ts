@@ -48,7 +48,11 @@ export class BorrowingBookComponent implements OnInit {
     };
   }
   
-
+  onClose() {
+    this.dialogRef.close();
+    
+  
+  }
   submitBorrowRequest(): void {
     console.log('Borrow request submitted:', this.borrow);
     this.borrowService.addborrow(this.borrow).subscribe(

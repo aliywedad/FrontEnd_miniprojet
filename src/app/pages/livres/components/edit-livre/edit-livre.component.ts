@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+ 
+
+
+
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -7,13 +11,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { UsersServicesComponent } from 'src/app/services/UsersServices';
 import { LiversService } from 'src/app/services/liver.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LivresComponent } from '../../livres.component';
 
 @Component({
-  selector: 'app-add-livre',
+  selector: 'app-edit-livre',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -26,31 +29,25 @@ import { LivresComponent } from '../../livres.component';
     MatInputModule,
     MatCheckboxModule,
   ],
-  templateUrl: './add-livre.component.html',
-  styleUrl: './add-livre.component.scss'
+  templateUrl: './edit-livre.component.html',
+  styleUrl: './edit-livre.component.scss'
 })
-export class AddLivreComponent {
+export class EditLivreComponent {
 
 
   constructor(private service: LiversService,
     public dialogRef: MatDialogRef<LivresComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,  
+
 
   ) { }
  
  
   
      
-    livre: any = {
-       
-      "title": "",
-      "author": "",
-      "genre": "",
-      "publication_year": 2023,
-      "available_copies": 0
-  
-  };
+    livre: any = this.data;
   onSubmit() {
-    this.service.addLiver(this.livre).subscribe(res => {
+    this.service.updateLiver(this.livre).subscribe(res => {
       console.log(res);
       this. onClose()
       

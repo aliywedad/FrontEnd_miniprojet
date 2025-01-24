@@ -6,6 +6,7 @@ import { UserInterfaceComponent } from './UserInterface/full.component';
 import { HomeComponent } from './UserInterface/home/home.component';
 import { AppSideLoginComponent } from './pages/authentication/side-login/side-login.component';
 import { HistoryComponent } from './UserInterface/history/history.component';
+import { AppSideRegisterComponent } from './pages/authentication/side-register/side-register.component';
 export const routes: Routes = [
 
   {
@@ -68,23 +69,23 @@ export const routes: Routes = [
   {
     path: '',
     component: AppSideLoginComponent,
-    children: [
-      {
-        path: 'authentication',
-
-        loadChildren: () =>
-          import('./pages/authentication/authentication.routes').then(
-            (m) => m.AuthenticationRoutes
-          ),
-      },
-    ],
+ 
   },
 
-
+  {
+    path: 'register',
+    component: AppSideRegisterComponent,
+ 
+  },
+  {
+    path: 'login',
+    component: AppSideLoginComponent,
+ 
+  },
  
 
   {
     path: '**',
-    redirectTo: 'authentication/error',
-  },
+    redirectTo: 'authentication/error'
+  }
 ];

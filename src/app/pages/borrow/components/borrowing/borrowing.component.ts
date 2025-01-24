@@ -14,6 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UsersServicesComponent } from 'src/app/services/UsersServices';
 import { LiversService } from 'src/app/services/liver.service';
 import { BorrowService } from 'src/app/services/borrow.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-borrowing',
@@ -39,7 +40,9 @@ users:any =[]
   constructor(
     private livreservice: LiversService,
     private userService: UsersServicesComponent,
-    private borrowService: BorrowService
+    private borrowService: BorrowService,
+    public dialogRef: MatDialogRef<BorrowingComponent>,
+
   
   ) { }
  
@@ -69,7 +72,14 @@ users:any =[]
   onSubmit() {
     this.borrowService.addborrow(this.borrow).subscribe(res => {
       console.log(res);
+      this.onClose()
     });
+  }
+
+  onClose() {
+    this.dialogRef.close();
+    
+  
   }
 
 
